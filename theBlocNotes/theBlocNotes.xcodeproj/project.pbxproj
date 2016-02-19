@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA1332CE1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332CB1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.m */; };
 		DA1332CF1C6412B9002B47BD /* TWBlocNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */; };
 		DA1332D21C641753002B47BD /* TWNewNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D11C641753002B47BD /* TWNewNoteViewController.m */; };
 		DA1332D51C665556002B47BD /* TWEntryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */; };
+		DA27FD391C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DA27FD381C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m */; };
+		DA27FD3B1C6D5CCF00876EB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3A1C6D5CCF00876EB6 /* CoreGraphics.framework */; };
+		DA27FD3D1C6D5CD700876EB6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */; };
+		DA27FD3F1C6D5CDF00876EB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */; };
+		DA27FD411C6D5CEA00876EB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD401C6D5CEA00876EB6 /* Foundation.framework */; };
 		DA5E47121C5AEDD400DBF990 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47111C5AEDD400DBF990 /* main.m */; };
 		DA5E47151C5AEDD400DBF990 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47141C5AEDD400DBF990 /* AppDelegate.m */; };
-		DA5E47181C5AEDD400DBF990 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47171C5AEDD400DBF990 /* ViewController.m */; };
 		DA5E471B1C5AEDD400DBF990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5E47191C5AEDD400DBF990 /* Main.storyboard */; };
 		DA5E471E1C5AEDD400DBF990 /* theBlocNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA5E471C1C5AEDD400DBF990 /* theBlocNotes.xcdatamodeld */; };
 		DA5E47201C5AEDD400DBF990 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA5E471F1C5AEDD400DBF990 /* Assets.xcassets */; };
@@ -41,20 +44,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA1332CA1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TWBlocNotes+CoreDataProperties.h"; path = "../TWBlocNotes+CoreDataProperties.h"; sourceTree = "<group>"; };
-		DA1332CB1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TWBlocNotes+CoreDataProperties.m"; path = "../TWBlocNotes+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DA1332CC1C6412B9002B47BD /* TWBlocNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWBlocNotes.h; path = ../TWBlocNotes.h; sourceTree = "<group>"; };
 		DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWBlocNotes.m; path = ../TWBlocNotes.m; sourceTree = "<group>"; };
 		DA1332D01C641753002B47BD /* TWNewNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNewNoteViewController.h; sourceTree = "<group>"; };
 		DA1332D11C641753002B47BD /* TWNewNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNewNoteViewController.m; sourceTree = "<group>"; };
 		DA1332D31C665556002B47BD /* TWEntryListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWEntryListTableViewController.h; path = ../TWEntryListTableViewController.h; sourceTree = "<group>"; };
-		DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWEntryListTableViewController.m; path = ../TWEntryListTableViewController.m; sourceTree = "<group>"; };
+		DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TWEntryListTableViewController.m; sourceTree = SOURCE_ROOT; };
+		DA27FD371C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TWBlocNotes+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DA27FD381C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TWBlocNotes+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DA27FD3A1C6D5CCF00876EB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DA27FD401C6D5CEA00876EB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA5E470D1C5AEDD400DBF990 /* theBlocNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theBlocNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5E47111C5AEDD400DBF990 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA5E47131C5AEDD400DBF990 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA5E47141C5AEDD400DBF990 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DA5E47161C5AEDD400DBF990 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DA5E47171C5AEDD400DBF990 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		DA5E471A1C5AEDD400DBF990 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA5E471D1C5AEDD400DBF990 /* theBlocNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = theBlocNotes.xcdatamodel; sourceTree = "<group>"; };
 		DA5E471F1C5AEDD400DBF990 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +80,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA27FD411C6D5CEA00876EB6 /* Foundation.framework in Frameworks */,
+				DA27FD3F1C6D5CDF00876EB6 /* UIKit.framework in Frameworks */,
+				DA27FD3D1C6D5CD700876EB6 /* CoreData.framework in Frameworks */,
+				DA27FD3B1C6D5CCF00876EB6 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +107,12 @@
 		DA5E47041C5AEDD400DBF990 = {
 			isa = PBXGroup;
 			children = (
+				DA27FD401C6D5CEA00876EB6 /* Foundation.framework */,
+				DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */,
+				DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */,
+				DA27FD3A1C6D5CCF00876EB6 /* CoreGraphics.framework */,
+				DA27FD371C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.h */,
+				DA27FD381C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m */,
 				DA5E470F1C5AEDD400DBF990 /* theBlocNotes */,
 				DA5E472C1C5AEDD400DBF990 /* theBlocNotesTests */,
 				DA5E47371C5AEDD400DBF990 /* theBlocNotesUITests */,
@@ -122,17 +137,13 @@
 				DA5E47141C5AEDD400DBF990 /* AppDelegate.m */,
 				DA1332D31C665556002B47BD /* TWEntryListTableViewController.h */,
 				DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */,
+				DA1332D01C641753002B47BD /* TWNewNoteViewController.h */,
+				DA1332D11C641753002B47BD /* TWNewNoteViewController.m */,
 				DA71512B1C62AC1800C4C791 /* TWCoreDataStack.h */,
 				DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */,
-				DA5E47161C5AEDD400DBF990 /* ViewController.h */,
-				DA5E47171C5AEDD400DBF990 /* ViewController.m */,
-				DA1332CA1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.h */,
-				DA1332CB1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.m */,
 				DA1332CC1C6412B9002B47BD /* TWBlocNotes.h */,
 				DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */,
 				DA5E47191C5AEDD400DBF990 /* Main.storyboard */,
-				DA1332D01C641753002B47BD /* TWNewNoteViewController.h */,
-				DA1332D11C641753002B47BD /* TWNewNoteViewController.m */,
 				DA5E471F1C5AEDD400DBF990 /* Assets.xcassets */,
 				DA5E47211C5AEDD400DBF990 /* LaunchScreen.storyboard */,
 				DA5E47241C5AEDD400DBF990 /* Info.plist */,
@@ -299,14 +310,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1332CF1C6412B9002B47BD /* TWBlocNotes.m in Sources */,
-				DA5E47181C5AEDD400DBF990 /* ViewController.m in Sources */,
 				DA5E47151C5AEDD400DBF990 /* AppDelegate.m in Sources */,
-				DA1332CE1C6412B9002B47BD /* TWBlocNotes+CoreDataProperties.m in Sources */,
 				DA5E47121C5AEDD400DBF990 /* main.m in Sources */,
 				DA1332D51C665556002B47BD /* TWEntryListTableViewController.m in Sources */,
 				DA71512D1C62AC1800C4C791 /* TWCoreDataStack.m in Sources */,
 				DA1332D21C641753002B47BD /* TWNewNoteViewController.m in Sources */,
 				DA5E471E1C5AEDD400DBF990 /* theBlocNotes.xcdatamodeld in Sources */,
+				DA27FD391C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

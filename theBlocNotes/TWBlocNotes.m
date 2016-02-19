@@ -8,8 +8,25 @@
 
 #import "TWBlocNotes.h"
 
-@implementation TWBlocNotes
+
+@implementation TWBlocNotes 
 
 // Insert code here to add functionality to your managed object subclass
+
+@dynamic date;
+@dynamic title;
+@dynamic text;
+@dynamic imageData;
+@dynamic magicIdea;
+@dynamic mood;
+
+- (NSString *)sectionName {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.date];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMM yyyy"];
+    
+    return [dateFormatter stringFromDate:date];
+}
 
 @end

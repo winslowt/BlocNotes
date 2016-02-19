@@ -9,17 +9,38 @@
 #import "TWNewNoteViewController.h"
 #import "TWBlocNotes.h"
 #import "TWCoreDataStack.h"
+#import "TWEntryListTableViewController.h"
+
 
 
 @interface TWNewNoteViewController ()
-@property (nonatomic, strong) UITextView *textView;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UITextField *textField;
+
 
 @end
 
 @implementation TWNewNoteViewController
 
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+        //what is this stuff
+        
+        
+    }
+    return self;
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.entry !=nil) {
+        self.textField.text = self.entry.text;
+        self.textView.text = self.entry.title;
+        
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -32,17 +53,37 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void) insertTitle {
+    TWCoreDataStack *stackedCore = [TWCoreDataStack defaultStack];
+    TWBlocNotes *entry = [NSEntityDescription insertNewObjectForEntityForName:@"TWBlocNotes" inManagedObjectContext:stackedCore.managedObjectContext];
+    entry.text = self.textView.text;
+    entry.title = self.textView.text;
+}
 - (void) insertNoteEntry {
     TWCoreDataStack *coreDataStack = [TWCoreDataStack defaultStack];
     TWBlocNotes *note = [NSEntityDescription insertNewObjectForEntityForName:@"TWBlocNotes" inManagedObjectContext:coreDataStack.managedObjectContext];
     note.text = self.textView.text;
+    note.title = self.textField.text;
     note.date = [[NSDate date] timeIntervalSince1970];
     [coreDataStack saveContext];
     
     
 }
+
+- (void) updateNoteEntry {
+    self.entry.text = self.textField.text;
+    
+    TWCoreDataStack *coreStack = [TWCoreDataStack defaultStack];
+    [coreStack saveContext];
+}
 - (IBAction)doneWasPressed:(id)sender {
-    [self insertNoteEntry];
+    
+    if (self.entry !=nil) {
+        [self updateNoteEntry];
+    }
+    else {
+        [self insertNoteEntry];
+    }
     [self dismissSelf];
 }
 - (IBAction)cancelWasPressed:(id)sender {

@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xxu-lh-WPs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xxu-lh-WPs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--New Note View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="Iki-FW-F2b">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TWNewNoteViewController" sceneMemberID="viewController">
-                    <textView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="idM-D9-MsQ">
+                <viewController storyboardIdentifier="TWNewNoteViewController" id="xSv-Tc-U2S" customClass="TWNewNoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="00z-2Q-IDS"/>
+                        <viewControllerLayoutGuide type="bottom" id="SNk-Gw-8nN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DG8-mw-Ir9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gQb-gM-MKc">
+                                <rect key="frame" x="29" y="92" width="559" height="448"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="14"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                    </textView>
+                    </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="VNL-Tt-lQc">
-                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="qfW-Ng-4Oe">
+                    <navigationItem key="navigationItem" id="4vE-lq-zVg">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Fim-gJ-cn6">
                             <connections>
-                                <action selector="cancelWasPressed:" destination="BYZ-38-t0r" id="Q6l-im-HvB"/>
+                                <action selector="cancelWasPressed:" destination="xSv-Tc-U2S" id="GKi-y9-fjs"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="KZ0-cF-gLr">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="zmE-jF-BtU">
+                            <rect key="frame" x="84" y="7" width="432" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="dLV-iH-q95">
                             <connections>
-                                <action selector="doneWasPressed:" destination="BYZ-38-t0r" id="PwJ-d9-ei8"/>
+                                <action selector="doneWasPressed:" destination="xSv-Tc-U2S" id="ua2-Vw-N82"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="textField" destination="zmE-jF-BtU" id="8QM-WC-Bx2"/>
+                        <outlet property="textView" destination="gQb-gM-MKc" id="tPc-pX-xNV"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SsP-uY-GNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1363" y="90"/>
+            <point key="canvasLocation" x="1510" y="45"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Twins Notes-->
         <scene sceneID="6PN-zO-dyg">
             <objects>
                 <tableViewController id="TfN-Un-HEn" customClass="TWEntryListTableViewController" sceneMemberID="viewController">
@@ -60,10 +80,10 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="lo0-tB-llO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="T0F-tz-0z2">
+                    <navigationItem key="navigationItem" title="Twins Notes" id="lo0-tB-llO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="T0F-tz-0z2">
                             <connections>
-                                <segue destination="hk2-tY-fkO" kind="presentation" id="7IS-re-IOk"/>
+                                <segue destination="kvD-Kb-eVy" kind="presentation" id="L6e-Y9-EEU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -71,7 +91,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00Q-uG-vXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="607" y="788"/>
+            <point key="canvasLocation" x="629" y="870"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KbL-a6-hwZ">
@@ -90,22 +110,22 @@
             <point key="canvasLocation" x="-162" y="769"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="3gc-lV-SBY">
+        <scene sceneID="Ts3-8N-uzH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hk2-tY-fkO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kvD-Kb-eVy" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cLQ-Gs-94g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FEk-NM-MAi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="MeY-Bl-F7s"/>
+                        <segue destination="xSv-Tc-U2S" kind="relationship" relationship="rootViewController" id="W1S-rA-ULW"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jo8-WA-RhO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUW-nI-Vo4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="90"/>
+            <point key="canvasLocation" x="686" y="57"/>
         </scene>
     </scenes>
 </document>

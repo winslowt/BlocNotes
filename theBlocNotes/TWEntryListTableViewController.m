@@ -9,14 +9,27 @@
 #import "TWEntryListTableViewController.h"
 #import "TWCoreDataStack.h"
 #import "TWBlocNotes.h"
+#import "TWNewNoteViewController.h"
+
 
 @interface TWEntryListTableViewController () <NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+
 @end
 
 @implementation TWEntryListTableViewController
+
+- (id) initWithStyle:(UITableViewStyle)style {
+    
+    self = [super initWithStyle:style];
+    
+    if (self) {
+    }
+    return self;
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +48,18 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    if ([segue.identifier isEqualToString:@"edit"]) {
+//        UITableViewCell *cell = sender;
+//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//        UINavigationController *navController = segue.destinationViewController;
+//        TWNewNoteViewController *entryViewController = (TWNewNoteViewController *)
+//        navController.topViewController;
+//        entryViewController.entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//    }
+//}
+
 
 #pragma mark - Table view data source
 
@@ -53,30 +78,6 @@
     
     //returns the number of rows in a given section of our table view, we retrieve the section information from the fetched results controller and retrieve from it the numberOfObjects in that section-----each section in our table view is represented by a sectioninfoobject that conforms to NSFetchresultssectioninfo protocol 
 }
-- (NSFetchRequest *)entryListFetchRequest {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TWBlocNotes"];
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-    
-    return fetchRequest;
-    }
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (_fetchedResultsController !=nil) {
-        return _fetchedResultsController;
-    }
-    TWCoreDataStack *coreDataStack = [TWCoreDataStack defaultStack];
-    NSFetchRequest *fetchRequest = [self entryListFetchRequest];
-    
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:coreDataStack.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    
-    _fetchedResultsController.delegate = self;
-    
-    return _fetchedResultsController;
-}
-
-- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView reloadData];
-}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,6 +91,105 @@
     return cell;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    TWBlocNotes *entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    TWCoreDataStack *coreDataStack = [TWCoreDataStack defaultStack];
+    [[coreDataStack managedObjectContext] deleteObject:entry];
+    [coreDataStack saveContext];
+    
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    
+    return [sectionInfo name];
+}
+
+- (NSFetchRequest *)entryListFetchRequest {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"TWBlocNotes"];
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
+    
+    
+    return fetchRequest;
+    }
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (_fetchedResultsController !=nil) {
+        return _fetchedResultsController;
+    }
+    TWCoreDataStack *coreDataStack = [TWCoreDataStack defaultStack];
+    NSFetchRequest *fetchRequest = [self entryListFetchRequest];
+    
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:coreDataStack.managedObjectContext sectionNameKeyPath:@"sectionName" cacheName:nil];
+    
+    _fetchedResultsController.delegate = self;
+    
+
+    
+    return _fetchedResultsController;
+}
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
+    //called whenever an item is inserted, edited, changed, or moved
+    
+    UITableView *tableView = self.tableView;
+    
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeMove:
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)jcontroller didChangeSection:(nonnull id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    switch (type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
+}
+
+
+- (void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView endUpdates];
+}
+
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    TWNewNoteViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"TWNewNoteViewController"];
+    TWBlocNotes *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    vc.entry = note; 
+    
+    UINavigationController *newNavigation = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    
+    [self presentViewController:newNavigation animated:YES completion:nil];
+    
+ 
+}
 
 /*
 // Override to support conditional editing of the table view.

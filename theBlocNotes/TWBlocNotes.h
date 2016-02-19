@@ -9,14 +9,31 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(int16_t, TWBlocNotesEntryMood) {
+    TWBlocNotesEntryMoodGood = 0,
+    TWBlocNotesEntryMoodAverage = 1,
+    TWBlocNotesEntryBad = 2
+    
+    
+};
+
+
 
 @interface TWBlocNotes : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
+@property (nonatomic) NSTimeInterval date;
+@property (nullable, nonatomic, retain) NSString *title;
+@property (nullable, nonatomic, retain) NSString *text;
+@property (nullable, nonatomic, retain) NSData *imageData;
+@property (nullable, nonatomic, retain) NSString *magicIdea;
+@property (nonatomic) int16_t mood;
+
+@property (nullable,nonatomic, readonly) NSString *sectionName;
+
 @end
 
-NS_ASSUME_NONNULL_END
 
-#import "TWBlocNotes+CoreDataProperties.h"
+
+

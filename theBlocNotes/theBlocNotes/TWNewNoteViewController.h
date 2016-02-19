@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TWBlocNotes;
+
 @interface TWNewNoteViewController : UIViewController
+
+@property (nonatomic, strong) TWBlocNotes *entry;
 
 @end
