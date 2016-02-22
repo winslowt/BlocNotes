@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--New Note View Controller-->
@@ -35,16 +36,23 @@
                             </connections>
                         </barButtonItem>
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="zmE-jF-BtU">
-                            <rect key="frame" x="84" y="7" width="432" height="30"/>
+                            <rect key="frame" x="79" y="7" width="404" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="dLV-iH-q95">
-                            <connections>
-                                <action selector="doneWasPressed:" destination="xSv-Tc-U2S" id="ua2-Vw-N82"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="done" id="dLV-iH-q95">
+                                <connections>
+                                    <action selector="doneWasPressed:" destination="xSv-Tc-U2S" id="ua2-Vw-N82"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="action" id="IXl-CC-wzQ">
+                                <connections>
+                                    <action selector="shareWasPressed:" destination="xSv-Tc-U2S" id="enD-Rg-Tys"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

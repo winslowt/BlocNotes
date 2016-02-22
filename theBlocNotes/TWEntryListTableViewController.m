@@ -176,6 +176,12 @@
     [self.tableView endUpdates];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    return YES;
+}
+
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     

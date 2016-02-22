@@ -10,6 +10,8 @@
 #import "TWBlocNotes.h"
 #import "TWCoreDataStack.h"
 #import "TWEntryListTableViewController.h"
+#import "ShareUtilities.h"
+
 
 
 
@@ -75,6 +77,14 @@
     
     TWCoreDataStack *coreStack = [TWCoreDataStack defaultStack];
     [coreStack saveContext];
+}
+- (IBAction)shareButtonPressed:(id)sender {
+    
+    [ShareUtilities shareMediaItem:self.textView fromVC:self];
+    
+    
+    
+    
 }
 - (IBAction)doneWasPressed:(id)sender {
     
