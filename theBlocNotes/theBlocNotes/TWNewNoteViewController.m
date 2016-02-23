@@ -10,7 +10,7 @@
 #import "TWBlocNotes.h"
 #import "TWCoreDataStack.h"
 #import "TWEntryListTableViewController.h"
-#import "ShareUtilities.h"
+
 
 
 
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation TWNewNoteViewController
+@implementation TWNewNoteViewController 
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -78,14 +78,27 @@
     TWCoreDataStack *coreStack = [TWCoreDataStack defaultStack];
     [coreStack saveContext];
 }
-- (IBAction)shareButtonPressed:(id)sender {
+- (IBAction)shareWasPressed:(id)sender {
     
-    [ShareUtilities shareMediaItem:self.textView fromVC:self];
+    NSMutableArray *itemsToShare = [NSMutableArray array];
+
     
+    if (self.entry.text.length > 0) {
+        [itemsToShare addObject:self.entry.text];
+    }
     
+    if (self.entry.title.length > 0) {
+        [itemsToShare addObject:self.entry.title];
+    }
     
+    if (itemsToShare.count > 0) {
+        UIActivityViewController *shareNoteVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+        [self presentViewController:shareNoteVC animated:YES completion:nil];
+    }
     
 }
+
+
 - (IBAction)doneWasPressed:(id)sender {
     
     if (self.entry !=nil) {

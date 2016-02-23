@@ -10,9 +10,11 @@
 
 @class TWBlocNotes;
 
-@interface TWNewNoteViewController : UIViewController
+@interface TWNewNoteViewController : UIViewController 
 
 @property (nonatomic, strong) TWBlocNotes *entry;
+
+
 
 
 
