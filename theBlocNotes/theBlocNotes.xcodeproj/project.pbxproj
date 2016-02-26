@@ -10,11 +10,17 @@
 		DA1332CF1C6412B9002B47BD /* TWBlocNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */; };
 		DA1332D21C641753002B47BD /* TWNewNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D11C641753002B47BD /* TWNewNoteViewController.m */; };
 		DA1332D51C665556002B47BD /* TWEntryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */; };
+		DA18B56D1C7BE82A00D7ADD8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA18B56C1C7BE82A00D7ADD8 /* ShareViewController.m */; };
+		DA18B5701C7BE82A00D7ADD8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA18B56E1C7BE82A00D7ADD8 /* MainInterface.storyboard */; };
+		DA18B5741C7BE82A00D7ADD8 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DA27FD391C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DA27FD381C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m */; };
 		DA27FD3B1C6D5CCF00876EB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3A1C6D5CCF00876EB6 /* CoreGraphics.framework */; };
 		DA27FD3D1C6D5CD700876EB6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */; };
 		DA27FD3F1C6D5CDF00876EB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */; };
 		DA27FD411C6D5CEA00876EB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA27FD401C6D5CEA00876EB6 /* Foundation.framework */; };
+		DA383E3B1C7FF89E00CF5503 /* TWBlocNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */; };
+		DA383E3C1C7FF96500CF5503 /* TWCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */; };
+		DA383E3D1C7FFDD100CF5503 /* theBlocNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DA5E471C1C5AEDD400DBF990 /* theBlocNotes.xcdatamodeld */; };
 		DA5E47121C5AEDD400DBF990 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47111C5AEDD400DBF990 /* main.m */; };
 		DA5E47151C5AEDD400DBF990 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47141C5AEDD400DBF990 /* AppDelegate.m */; };
 		DA5E471B1C5AEDD400DBF990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5E47191C5AEDD400DBF990 /* Main.storyboard */; };
@@ -27,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DA18B5721C7BE82A00D7ADD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA5E47051C5AEDD400DBF990 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DA18B5681C7BE82A00D7ADD8;
+			remoteInfo = ShareExtension;
+		};
 		DA5E472A1C5AEDD400DBF990 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA5E47051C5AEDD400DBF990 /* Project object */;
@@ -43,6 +56,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DA18B5781C7BE82A00D7ADD8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DA18B5741C7BE82A00D7ADD8 /* ShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		DA1332CC1C6412B9002B47BD /* TWBlocNotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWBlocNotes.h; path = ../TWBlocNotes.h; sourceTree = "<group>"; };
 		DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWBlocNotes.m; path = ../TWBlocNotes.m; sourceTree = "<group>"; };
@@ -50,12 +77,18 @@
 		DA1332D11C641753002B47BD /* TWNewNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNewNoteViewController.m; sourceTree = "<group>"; };
 		DA1332D31C665556002B47BD /* TWEntryListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWEntryListTableViewController.h; path = ../TWEntryListTableViewController.h; sourceTree = "<group>"; };
 		DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TWEntryListTableViewController.m; sourceTree = SOURCE_ROOT; };
+		DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA18B56B1C7BE82A00D7ADD8 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		DA18B56C1C7BE82A00D7ADD8 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		DA18B56F1C7BE82A00D7ADD8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		DA18B5711C7BE82A00D7ADD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA27FD371C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TWBlocNotes+CoreDataProperties.h"; sourceTree = "<group>"; };
 		DA27FD381C6D42BF00876EB6 /* TWBlocNotes+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TWBlocNotes+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DA27FD3A1C6D5CCF00876EB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA27FD401C6D5CEA00876EB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DA383E3A1C7FD64900CF5503 /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		DA5E470D1C5AEDD400DBF990 /* theBlocNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = theBlocNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA5E47111C5AEDD400DBF990 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA5E47131C5AEDD400DBF990 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -73,9 +106,17 @@
 		DA5E473A1C5AEDD400DBF990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA71512B1C62AC1800C4C791 /* TWCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWCoreDataStack.h; path = ../TWCoreDataStack.h; sourceTree = "<group>"; };
 		DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWCoreDataStack.m; path = ../TWCoreDataStack.m; sourceTree = "<group>"; };
+		DAFD13181C7FD32B00C8B07F /* theBlocNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = theBlocNotes.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DA18B5661C7BE82A00D7ADD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA5E470A1C5AEDD400DBF990 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +145,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA18B56A1C7BE82A00D7ADD8 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				DA383E3A1C7FD64900CF5503 /* ShareExtension.entitlements */,
+				DA18B56B1C7BE82A00D7ADD8 /* ShareViewController.h */,
+				DA18B56C1C7BE82A00D7ADD8 /* ShareViewController.m */,
+				DA18B56E1C7BE82A00D7ADD8 /* MainInterface.storyboard */,
+				DA18B5711C7BE82A00D7ADD8 /* Info.plist */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
 		DA5E47041C5AEDD400DBF990 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +169,7 @@
 				DA5E470F1C5AEDD400DBF990 /* theBlocNotes */,
 				DA5E472C1C5AEDD400DBF990 /* theBlocNotesTests */,
 				DA5E47371C5AEDD400DBF990 /* theBlocNotesUITests */,
+				DA18B56A1C7BE82A00D7ADD8 /* ShareExtension */,
 				DA5E470E1C5AEDD400DBF990 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +180,7 @@
 				DA5E470D1C5AEDD400DBF990 /* theBlocNotes.app */,
 				DA5E47291C5AEDD400DBF990 /* theBlocNotesTests.xctest */,
 				DA5E47341C5AEDD400DBF990 /* theBlocNotesUITests.xctest */,
+				DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -133,6 +188,7 @@
 		DA5E470F1C5AEDD400DBF990 /* theBlocNotes */ = {
 			isa = PBXGroup;
 			children = (
+				DAFD13181C7FD32B00C8B07F /* theBlocNotes.entitlements */,
 				DA5E47131C5AEDD400DBF990 /* AppDelegate.h */,
 				DA5E47141C5AEDD400DBF990 /* AppDelegate.m */,
 				DA1332D31C665556002B47BD /* TWEntryListTableViewController.h */,
@@ -182,6 +238,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DA18B5681C7BE82A00D7ADD8 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA18B5751C7BE82A00D7ADD8 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				DA18B5651C7BE82A00D7ADD8 /* Sources */,
+				DA18B5661C7BE82A00D7ADD8 /* Frameworks */,
+				DA18B5671C7BE82A00D7ADD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		DA5E470C1C5AEDD400DBF990 /* theBlocNotes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA5E473D1C5AEDD400DBF990 /* Build configuration list for PBXNativeTarget "theBlocNotes" */;
@@ -189,10 +262,12 @@
 				DA5E47091C5AEDD400DBF990 /* Sources */,
 				DA5E470A1C5AEDD400DBF990 /* Frameworks */,
 				DA5E470B1C5AEDD400DBF990 /* Resources */,
+				DA18B5781C7BE82A00D7ADD8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DA18B5731C7BE82A00D7ADD8 /* PBXTargetDependency */,
 			);
 			name = theBlocNotes;
 			productName = theBlocNotes;
@@ -244,8 +319,23 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Bloc;
 				TargetAttributes = {
+					DA18B5681C7BE82A00D7ADD8 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = SQV79M6VZF;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					DA5E470C1C5AEDD400DBF990 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = SQV79M6VZF;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					DA5E47281C5AEDD400DBF990 = {
 						CreatedOnToolsVersion = 7.2;
@@ -273,11 +363,20 @@
 				DA5E470C1C5AEDD400DBF990 /* theBlocNotes */,
 				DA5E47281C5AEDD400DBF990 /* theBlocNotesTests */,
 				DA5E47331C5AEDD400DBF990 /* theBlocNotesUITests */,
+				DA18B5681C7BE82A00D7ADD8 /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DA18B5671C7BE82A00D7ADD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA18B5701C7BE82A00D7ADD8 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA5E470B1C5AEDD400DBF990 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +404,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DA18B5651C7BE82A00D7ADD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA383E3C1C7FF96500CF5503 /* TWCoreDataStack.m in Sources */,
+				DA383E3B1C7FF89E00CF5503 /* TWBlocNotes.m in Sources */,
+				DA18B56D1C7BE82A00D7ADD8 /* ShareViewController.m in Sources */,
+				DA383E3D1C7FFDD100CF5503 /* theBlocNotes.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DA5E47091C5AEDD400DBF990 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,6 +449,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DA18B5731C7BE82A00D7ADD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DA18B5681C7BE82A00D7ADD8 /* ShareExtension */;
+			targetProxy = DA18B5721C7BE82A00D7ADD8 /* PBXContainerItemProxy */;
+		};
 		DA5E472B1C5AEDD400DBF990 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DA5E470C1C5AEDD400DBF990 /* theBlocNotes */;
@@ -352,6 +467,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		DA18B56E1C7BE82A00D7ADD8 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA18B56F1C7BE82A00D7ADD8 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		DA5E47191C5AEDD400DBF990 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -371,6 +494,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DA18B5761C7BE82A00D7ADD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-winslowt1--theBlocNotes-.theBlocNotes.ShareExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		DA18B5771C7BE82A00D7ADD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com-winslowt1--theBlocNotes-.theBlocNotes.ShareExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		DA5E473B1C5AEDD400DBF990 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -457,10 +610,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = theBlocNotes/theBlocNotes.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = theBlocNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-winslowt1--theBlocNotes-.theBlocNotes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -469,10 +626,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = theBlocNotes/theBlocNotes.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = theBlocNotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com-winslowt1--theBlocNotes-.theBlocNotes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -528,6 +689,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DA18B5751C7BE82A00D7ADD8 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA18B5761C7BE82A00D7ADD8 /* Debug */,
+				DA18B5771C7BE82A00D7ADD8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DA5E47081C5AEDD400DBF990 /* Build configuration list for PBXProject "theBlocNotes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

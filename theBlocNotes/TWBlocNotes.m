@@ -20,6 +20,7 @@
 @dynamic magicIdea;
 @dynamic mood;
 
+
 - (NSString *)sectionName {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.date];
     

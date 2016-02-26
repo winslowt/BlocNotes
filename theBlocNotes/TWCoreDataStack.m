@@ -94,10 +94,12 @@
 }
 - (NSURL *)applicationDocumentsDirectory {
     
-    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    NSLog(@"%@", url.absoluteString);
-    return url;
+    NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.Winslow"];
+    NSLog(@"%@", containerURL.absoluteString);
+    return containerURL;
     
 }
+
+
 
 @end
