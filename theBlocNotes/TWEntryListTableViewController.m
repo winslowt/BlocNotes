@@ -12,9 +12,21 @@
 #import "TWNewNoteViewController.h"
 
 
-@interface TWEntryListTableViewController () <NSFetchedResultsControllerDelegate>
+@interface TWEntryListTableViewController () <NSFetchedResultsControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property(nonatomic, strong) UISearchController *searchResultsController;
+@property(nonatomic, weak) id< UISearchResultsUpdating > searchResultsUpdater;
+//@property(nonatomic, strong, readonly) UISearchBar *searchBar;
+@property(nonatomic, strong) NSString *text;
+@property (strong, nonatomic) NSArray *filteredList;
+@property (strong, nonatomic) NSFetchRequest *searchFetchRequest;
+@property(nonatomic, getter=isSearchResultsButtonSelected) BOOL searchResultsButtonSelected;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+
+
+
 
 
 @end
@@ -34,11 +46,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    UISearchController *searchResultsController = [[UISearchController alloc] init];
+    self.searchResultsController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.searchBar becomeFirstResponder];
+    
+    self.searchResultsController.searchResultsUpdater = self;
+    self.tableView.tableHeaderView = self.searchResultsController.searchBar;
+    
+    self.definesPresentationContext = YES;
+
     
     [self.fetchedResultsController performFetch:nil];
     
@@ -196,6 +213,83 @@
     
  
 }
+
+- (instancetype)initWithSearchResultsController:(nullable UIViewController *)searchResultsController {
+    
+    return nil;
+    
+}
+
+//-(void)presentSearchController:(UISearchController *)searchController {
+//    
+//}
+
+- (NSFetchRequest *)searchFetchRequest {
+    
+    if (_searchFetchRequest != nil)
+    {
+        return _searchFetchRequest;
+    }
+    
+    _searchFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Title" inManagedObjectContext:self.managedObjectContext];
+    [_searchFetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    [_searchFetchRequest setSortDescriptors:sortDescriptors];
+    
+    return _searchFetchRequest;
+    
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+    
+    searchBar.text = searchBar.text;
+    
+}
+//    if (self.searchResultsButtonSelected == YES) {
+//     self.searchResultsController.text = @"New Text String";
+    
+
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+//    
+//    [self becomeFirstResponder];
+//    
+//}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    [searchBar setShowsCancelButton:YES];
+    self.tableView.allowsSelection = NO;
+    self.tableView.scrollEnabled = NO;
+    
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    searchBar.text=@"";
+    
+    [searchBar setShowsCancelButton:NO animated:YES];
+    [searchBar resignFirstResponder];
+    self.tableView.allowsSelection = YES;
+    self.tableView.scrollEnabled = YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    
+}
+
+
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+}
+
+
+ 
 
 /*
 // Override to support conditional editing of the table view.
