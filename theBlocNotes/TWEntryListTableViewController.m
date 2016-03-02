@@ -17,15 +17,13 @@
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property(nonatomic, strong) UISearchController *searchResultsController;
 @property(nonatomic, weak) id< UISearchResultsUpdating > searchResultsUpdater;
-//@property(nonatomic, strong, readonly) UISearchBar *searchBar;
+@property(nonatomic, strong, readonly) UISearchBar *searchBar;
 @property(nonatomic, strong) NSString *text;
 @property (strong, nonatomic) NSArray *filteredList;
 @property (strong, nonatomic) NSFetchRequest *searchFetchRequest;
 @property(nonatomic, getter=isSearchResultsButtonSelected) BOOL searchResultsButtonSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
-
-
+@property (strong, nonatomic) NSPredicate *filteredContentList;
 
 
 
@@ -46,56 +44,103 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UISearchController *searchResultsController = [[UISearchController alloc] init];
-    self.searchResultsController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
-    
-    [self.searchBar becomeFirstResponder];
-    
+    self.searchResultsController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    self.searchResultsController.dimsBackgroundDuringPresentation = NO;
     self.searchResultsController.searchResultsUpdater = self;
+    [self.searchResultsController.searchBar sizeToFit];
     self.tableView.tableHeaderView = self.searchResultsController.searchBar;
-    
+    self.tableView.delegate = self;
     self.definesPresentationContext = YES;
-
     
     [self.fetchedResultsController performFetch:nil];
     
 }
 
 - (void)didReceiveMemoryWarning {
+     self.searchFetchRequest = nil;
     [super didReceiveMemoryWarning];
+   
+    
     // Dispose of any resources that can be recreated.
 }
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"edit"]) {
-//        UITableViewCell *cell = sender;
-//        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-//        UINavigationController *navController = segue.destinationViewController;
-//        TWNewNoteViewController *entryViewController = (TWNewNoteViewController *)
-//        navController.topViewController;
-//        entryViewController.entry = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//    }
-//}
 
+
+#pragma mark - Search
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    [searchBar becomeFirstResponder];
+//    
+//    searchBar.text = searchBar.text;
+    
+    NSLog(@"%@",searchBar.text);
+    
+    
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    [searchBar setShowsCancelButton:YES];
+    self.tableView.allowsSelection = NO;
+    self.tableView.scrollEnabled = NO;
+    
+}
+
+- (NSFetchRequest *)searchFetchRequest {
+    
+    if (_searchFetchRequest != nil)
+    {
+        return _searchFetchRequest;
+    }
+    
+    _searchFetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TWBlocNotes" inManagedObjectContext:self.managedObjectContext];
+    [_searchFetchRequest setEntity:entity];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
+    [_searchFetchRequest setSortDescriptors:sortDescriptors];
+    
+    return _searchFetchRequest;
+    
+}
+
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    
+    NSString *searchString = self.searchResultsController.searchBar.text;
+    self.filteredContentList = searchString.length == 0 ? nil : [NSPredicate predicateWithFormat:@"name contains [c] %@ or url contains[c] %@", searchString, searchString];
+    
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
+    return self.filteredContentList == nil ? [[self.fetchedResultsController sections] count] : 1;
     return self.fetchedResultsController.sections.count;
-    
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     
-    return [sectionInfo numberOfObjects];
+    if (self.filteredContentList == nil) {
+        
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+        
+        return [sectionInfo numberOfObjects];
+        
+    } else {
+        
+        return [[self.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:self.filteredContentList] count];
+        
+    }
     
-    //returns the number of rows in a given section of our table view, we retrieve the section information from the fetched results controller and retrieve from it the numberOfObjects in that section-----each section in our table view is represented by a sectioninfoobject that conforms to NSFetchresultssectioninfo protocol 
 }
 
+//- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+//    TWBlocNotes *project = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -122,9 +167,15 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     
+    if (self.filteredContentList == nil) {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo name];
+}
+    else {
+        return nil;
+        
+    }
 }
 
 - (NSFetchRequest *)entryListFetchRequest {
@@ -177,7 +228,7 @@
     }
 }
 
-- (void)controller:(NSFetchedResultsController *)jcontroller didChangeSection:(nonnull id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(nonnull id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
     switch (type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -220,52 +271,21 @@
     
 }
 
-//-(void)presentSearchController:(UISearchController *)searchController {
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    return NO;
+    
+
+
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//   
+//    NSString *searchString = searchBar.text;
 //    
-//}
-
-- (NSFetchRequest *)searchFetchRequest {
-    
-    if (_searchFetchRequest != nil)
-    {
-        return _searchFetchRequest;
-    }
-    
-    _searchFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Title" inManagedObjectContext:self.managedObjectContext];
-    [_searchFetchRequest setEntity:entity];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    [_searchFetchRequest setSortDescriptors:sortDescriptors];
-    
-    return _searchFetchRequest;
-    
-}
-
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    
-    [searchBar resignFirstResponder];
-    
-    searchBar.text = searchBar.text;
-    
-}
-//    if (self.searchResultsButtonSelected == YES) {
-//     self.searchResultsController.text = @"New Text String";
-    
-
-//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 //    
-//    [self becomeFirstResponder];
+////    self.filteredContentList = [[NSMutableArray alloc] init];
+////    [self.filteredContentList removeAllObjects];
 //    
-//}
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+//    
     
-    [searchBar setShowsCancelButton:YES];
-    self.tableView.allowsSelection = NO;
-    self.tableView.scrollEnabled = NO;
     
 }
 
@@ -282,22 +302,13 @@
     
 }
 
-
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+         
+    return self.filteredContentList == nil;
     
 }
 
-
- 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
 /*
 // Override to support editing the table view.
