@@ -19,11 +19,11 @@
 @property(nonatomic, weak) id< UISearchResultsUpdating > searchResultsUpdater;
 @property(nonatomic, strong, readonly) UISearchBar *searchBar;
 @property(nonatomic, strong) NSString *text;
-@property (strong, nonatomic) NSArray *filteredList;
+//@property (strong, nonatomic) NSArray *filteredList;
 @property (strong, nonatomic) NSFetchRequest *searchFetchRequest;
 @property(nonatomic, getter=isSearchResultsButtonSelected) BOOL searchResultsButtonSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSPredicate *filteredContentList;
+@property (strong, nonatomic) NSPredicate *searchPredicate;
 
 
 
@@ -43,6 +43,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    ///hmmmm did I do this right?
     
     self.searchResultsController = [[UISearchController alloc] initWithSearchResultsController:nil];
     self.searchResultsController.dimsBackgroundDuringPresentation = NO;
@@ -94,10 +96,12 @@
     }
     
     _searchFetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TWBlocNotes" inManagedObjectContext:self.managedObjectContext];
+    TWCoreDataStack *stackedCore = [TWCoreDataStack defaultStack];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TWBlocNotes" inManagedObjectContext:stackedCore.managedObjectContext];
     [_searchFetchRequest setEntity:entity];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"title" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     [_searchFetchRequest setSortDescriptors:sortDescriptors];
     
@@ -109,7 +113,7 @@
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     
     NSString *searchString = self.searchResultsController.searchBar.text;
-    self.filteredContentList = searchString.length == 0 ? nil : [NSPredicate predicateWithFormat:@"name contains [c] %@ or url contains[c] %@", searchString, searchString];
+    self.searchPredicate = searchString.length == 0 ? nil : [NSPredicate predicateWithFormat:@"title contains [c] %@ or text contains[c] %@", searchString, searchString];
     
     [self.tableView reloadData];
 }
@@ -118,14 +122,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return self.filteredContentList == nil ? [[self.fetchedResultsController sections] count] : 1;
-    return self.fetchedResultsController.sections.count;
+    return self.searchPredicate == nil ? [[self.fetchedResultsController sections] count] : 1;
+//    return self.fetchedResultsController.sections.count;
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (self.filteredContentList == nil) {
+    if (self.searchPredicate == nil) {
         
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
         
@@ -133,7 +137,10 @@
         
     } else {
         
-        return [[self.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:self.filteredContentList] count];
+//        return [self.filteredContentList count];
+        
+        return [[self.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:self.searchPredicate] count];
+        
         
     }
     
@@ -148,7 +155,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     TWBlocNotes *note = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = note.text;
+    cell.textLabel.text = note.title;
     
     return cell;
 }
@@ -168,7 +175,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if (self.filteredContentList == nil) {
+    if (self.searchPredicate == nil) {
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo name];
 }
@@ -305,7 +312,7 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     
          
-    return self.filteredContentList == nil;
+    return self.searchPredicate == nil;
     
 }
 

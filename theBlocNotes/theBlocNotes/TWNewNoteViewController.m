@@ -39,8 +39,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.entry !=nil) {
-        self.textField.text = self.entry.text;
-        self.textView.text = self.entry.title;
+        self.textField.text = self.entry.title;
+        self.textView.text = self.entry.text;
         
     }
     // Do any additional setup after loading the view.
@@ -55,12 +55,12 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) insertTitle {
-    TWCoreDataStack *stackedCore = [TWCoreDataStack defaultStack];
-    TWBlocNotes *entry = [NSEntityDescription insertNewObjectForEntityForName:@"TWBlocNotes" inManagedObjectContext:stackedCore.managedObjectContext];
-    entry.text = self.textView.text;
-    entry.title = self.textView.text;
-}
+//- (void) insertTitle {
+//    TWCoreDataStack *stackedCore = [TWCoreDataStack defaultStack];
+//    TWBlocNotes *entry = [NSEntityDescription insertNewObjectForEntityForName:@"TWBlocNotes" inManagedObjectContext:stackedCore.managedObjectContext];
+//    entry.text = self.textView.text;
+//    entry.title = self.textField.text;
+//}
 - (void) insertNoteEntry {
     TWCoreDataStack *coreDataStack = [TWCoreDataStack defaultStack];
     TWBlocNotes *note = [NSEntityDescription insertNewObjectForEntityForName:@"TWBlocNotes" inManagedObjectContext:coreDataStack.managedObjectContext];
@@ -73,7 +73,8 @@
 }
 
 - (void) updateNoteEntry {
-    self.entry.text = self.textField.text;
+    self.entry.text = self.textView.text;
+    self.entry.title = self.textField.text;
     
     TWCoreDataStack *coreStack = [TWCoreDataStack defaultStack];
     [coreStack saveContext];
