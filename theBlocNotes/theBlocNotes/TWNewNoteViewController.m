@@ -13,12 +13,16 @@
 
 
 
+@class NSDataDetector;
 
+@interface TWNewNoteViewController () <UIGestureRecognizerDelegate>
 
-@interface TWNewNoteViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
-
+@property (strong, nonatomic) NSDataDetector *detector;
+@property (strong, nonatomic) UITapGestureRecognizer *tapGesture;
+@property (nonatomic) NSUInteger *numberOfTapsRequired;
+@property(nonatomic,getter=isEditing) BOOL editing;
 
 @end
 
@@ -36,15 +40,39 @@
     
 }
 
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    
+    self.textView.editable = YES;
+    self.textView.userInteractionEnabled = YES;
+    
+    if (self.textView.editable == NO) {
+        
+        self.textView.dataDetectorTypes = UIDataDetectorTypeAll;
+        
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (self.entry !=nil) {
         self.textField.text = self.entry.title;
         self.textView.text = self.entry.text;
         
+        self.textView.editable = NO;
+        self.textView.dataDetectorTypes = UIDataDetectorTypeAll;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+        
+        tapGesture.numberOfTapsRequired = 2;
+        
+        [self.view addGestureRecognizer:tapGesture];
+
     }
-    // Do any additional setup after loading the view.
+
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -75,7 +103,6 @@
 - (void) updateNoteEntry {
     self.entry.text = self.textView.text;
     self.entry.title = self.textField.text;
-    
     TWCoreDataStack *coreStack = [TWCoreDataStack defaultStack];
     [coreStack saveContext];
 }
