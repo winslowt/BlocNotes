@@ -17,6 +17,7 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+
 + (instancetype) defaultStack {
     static TWCoreDataStack *defaultStack;
     static dispatch_once_t onceToken;
@@ -26,6 +27,16 @@
     });
     
     return defaultStack;
+}
+
+- (id)initWithStoreURL:(NSURL*)storeURL modelURL:(NSURL*)modelURL
+{
+    self = [super init];
+    if (self) {
+        self.storeURL = storeURL;
+        self.modelURL = modelURL;
+    }
+    return self;
 }
 
 - (void)saveContext {
@@ -52,12 +63,89 @@
     if (coordinator !=nil) {
        
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    self.managedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
 }
+    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
+    
+    NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
+    [dc addObserver:self
+           selector:@selector(storesWillChange:)
+               name:NSPersistentStoreCoordinatorStoresWillChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(storesDidChange:)
+               name:NSPersistentStoreCoordinatorStoresDidChangeNotification
+             object:psc];
+    
+    [dc addObserver:self
+           selector:@selector(persistentStoreDidImportUbiquitousContentChanges:)
+               name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
+             object:psc];
+    NSError* error;
+    [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                                       configuration:nil
+                                                                                 URL:self.storeURL
+                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore"}
+                                                                               error:&error];
     return _managedObjectContext;
 }
+
+- (void)persistentStoreDidImportUbiquitousContentChanges:(NSNotification*)note
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@", note.userInfo.description);
     
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    [moc performBlock:^{
+        [moc mergeChangesFromContextDidSaveNotification:note];
+        
+        // you may want to post a notification here so that which ever part of your app
+        // needs to can react appropriately to what was merged.
+        // An exmaple of how to iterate over what was merged follows, although I wouldn't
+        // recommend doing it here. Better handle it in a delegate or use notifications.
+        // Note that the notification contains NSManagedObjectIDs
+        // and not NSManagedObjects.
+        NSDictionary *changes = note.userInfo;
+        NSMutableSet *allChanges = [NSMutableSet new];
+        [allChanges unionSet:changes[NSInsertedObjectsKey]];
+        [allChanges unionSet:changes[NSUpdatedObjectsKey]];
+        [allChanges unionSet:changes[NSDeletedObjectsKey]];
+        
+        for (NSManagedObjectID *objID in allChanges) {
+            // do whatever you need to with the NSManagedObjectID
+         // you can retrieve the object from with [moc objectWithID:objID]
+            
+            [moc objectWithID:objID];
+            
+        }
+        
+        
+    }];
+}
+
+- (void)storesWillChange:(NSNotification *)note {
+    NSManagedObjectContext *moc = self.managedObjectContext;
+    [moc performBlockAndWait:^{
+        NSError *error = nil;
+        if ([moc hasChanges]) {
+            [moc save:&error];
+        }
+        
+        [moc reset];
+    }];
+    
+    // now reset your UI to be prepared for a totally different
+    // set of data (eg, popToRootViewControllerAnimated:)
+    // but don't load any new data yet.
+}
+    
+- (void)storesDidChange:(NSNotification *)note {
+    // here is when you can refresh your UI and
+    // load new data from the new store
+}
 
 -(NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
@@ -72,7 +160,7 @@
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
+    
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
@@ -92,6 +180,7 @@
     
     return _persistentStoreCoordinator;
 }
+
 - (NSURL *)applicationDocumentsDirectory {
     
     NSURL *containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.Winslow"];

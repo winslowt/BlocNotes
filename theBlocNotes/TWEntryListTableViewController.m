@@ -19,7 +19,6 @@
 @property(nonatomic, weak) id< UISearchResultsUpdating > searchResultsUpdater;
 @property(nonatomic, strong, readonly) UISearchBar *searchBar;
 @property(nonatomic, strong) NSString *text;
-//@property (strong, nonatomic) NSArray *filteredList;
 @property (strong, nonatomic) NSFetchRequest *searchFetchRequest;
 @property(nonatomic, getter=isSearchResultsButtonSelected) BOOL searchResultsButtonSelected;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;

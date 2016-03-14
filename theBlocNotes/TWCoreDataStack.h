@@ -13,10 +13,14 @@
 
 + (instancetype)defaultStack;
 
+- (id)initWithStoreURL:(NSURL *)storeURL modelURL:(NSURL *)modelURL;
+
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic,strong) NSURL* modelURL;
+@property (nonatomic,strong) NSURL* storeURL;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
