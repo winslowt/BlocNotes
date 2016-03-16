@@ -13,7 +13,6 @@
 
 + (instancetype)defaultStack;
 
-- (id)initWithStoreURL:(NSURL *)storeURL modelURL:(NSURL *)modelURL;
 
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

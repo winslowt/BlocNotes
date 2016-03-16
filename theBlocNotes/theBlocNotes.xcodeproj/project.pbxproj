@@ -30,6 +30,7 @@
 		DA5E472E1C5AEDD400DBF990 /* theBlocNotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E472D1C5AEDD400DBF990 /* theBlocNotesTests.m */; };
 		DA5E47391C5AEDD400DBF990 /* theBlocNotesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47381C5AEDD400DBF990 /* theBlocNotesUITests.m */; };
 		DA71512D1C62AC1800C4C791 /* TWCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */; };
+		DA7D2B8E1C9790810067B45A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7D2B8D1C9790810067B45A /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		DA5E473A1C5AEDD400DBF990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA71512B1C62AC1800C4C791 /* TWCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWCoreDataStack.h; path = ../TWCoreDataStack.h; sourceTree = "<group>"; };
 		DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWCoreDataStack.m; path = ../TWCoreDataStack.m; sourceTree = "<group>"; };
+		DA7D2B8D1C9790810067B45A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		DAFD13181C7FD32B00C8B07F /* theBlocNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = theBlocNotes.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7D2B8E1C9790810067B45A /* CloudKit.framework in Frameworks */,
 				DA27FD411C6D5CEA00876EB6 /* Foundation.framework in Frameworks */,
 				DA27FD3F1C6D5CDF00876EB6 /* UIKit.framework in Frameworks */,
 				DA27FD3D1C6D5CD700876EB6 /* CoreData.framework in Frameworks */,
@@ -160,6 +163,7 @@
 		DA5E47041C5AEDD400DBF990 = {
 			isa = PBXGroup;
 			children = (
+				DA7D2B8D1C9790810067B45A /* CloudKit.framework */,
 				DA27FD401C6D5CEA00876EB6 /* Foundation.framework */,
 				DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */,
 				DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */,

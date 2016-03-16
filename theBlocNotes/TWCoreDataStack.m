@@ -29,15 +29,15 @@
     return defaultStack;
 }
 
-- (id)initWithStoreURL:(NSURL*)storeURL modelURL:(NSURL*)modelURL
-{
-    self = [super init];
-    if (self) {
-        self.storeURL = storeURL;
-        self.modelURL = modelURL;
-    }
-    return self;
-}
+//- (id)initWithStoreURL:(NSURL*)storeURL modelURL:(NSURL*)modelURL
+//{
+//    self = [super init];
+//    if (self) {
+//        self.storeURL = storeURL;
+//        self.modelURL = modelURL;
+//    }
+//    return self;
+//}
 
 - (void)saveContext {
     //responsible for saving the contents of our in memory store to persistent store on disk
@@ -67,28 +67,28 @@
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     
 }
-    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
+//    __weak NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
     
     NSNotificationCenter *dc = [NSNotificationCenter defaultCenter];
     [dc addObserver:self
            selector:@selector(storesWillChange:)
                name:NSPersistentStoreCoordinatorStoresWillChangeNotification
-             object:psc];
+             object:_persistentStoreCoordinator];
     
     [dc addObserver:self
            selector:@selector(storesDidChange:)
                name:NSPersistentStoreCoordinatorStoresDidChangeNotification
-             object:psc];
+             object:_persistentStoreCoordinator];
     
     [dc addObserver:self
            selector:@selector(persistentStoreDidImportUbiquitousContentChanges:)
                name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
-             object:psc];
+             object:_persistentStoreCoordinator];
     NSError* error;
     [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                                        configuration:nil
                                                                                  URL:self.storeURL
-                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloudStore"}
+                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloud.com-winslowt1--theBlocNotes-.theBlocNotes"}
                                                                                error:&error];
     return _managedObjectContext;
 }
@@ -143,6 +143,8 @@
 }
     
 - (void)storesDidChange:(NSNotification *)note {
+ 
+    
     // here is when you can refresh your UI and
     // load new data from the new store
 }
