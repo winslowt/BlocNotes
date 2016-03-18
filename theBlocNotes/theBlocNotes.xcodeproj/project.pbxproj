@@ -10,6 +10,7 @@
 		DA1332CF1C6412B9002B47BD /* TWBlocNotes.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332CD1C6412B9002B47BD /* TWBlocNotes.m */; };
 		DA1332D21C641753002B47BD /* TWNewNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D11C641753002B47BD /* TWNewNoteViewController.m */; };
 		DA1332D51C665556002B47BD /* TWEntryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */; };
+		DA15CC0A1C9B858800F6F7B9 /* TWNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA15CC091C9B858800F6F7B9 /* TWNavController.m */; };
 		DA18B56D1C7BE82A00D7ADD8 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA18B56C1C7BE82A00D7ADD8 /* ShareViewController.m */; };
 		DA18B5701C7BE82A00D7ADD8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA18B56E1C7BE82A00D7ADD8 /* MainInterface.storyboard */; };
 		DA18B5741C7BE82A00D7ADD8 /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -30,7 +31,6 @@
 		DA5E472E1C5AEDD400DBF990 /* theBlocNotesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E472D1C5AEDD400DBF990 /* theBlocNotesTests.m */; };
 		DA5E47391C5AEDD400DBF990 /* theBlocNotesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5E47381C5AEDD400DBF990 /* theBlocNotesUITests.m */; };
 		DA71512D1C62AC1800C4C791 /* TWCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */; };
-		DA7D2B8E1C9790810067B45A /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA7D2B8D1C9790810067B45A /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +78,8 @@
 		DA1332D11C641753002B47BD /* TWNewNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNewNoteViewController.m; sourceTree = "<group>"; };
 		DA1332D31C665556002B47BD /* TWEntryListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWEntryListTableViewController.h; path = ../TWEntryListTableViewController.h; sourceTree = "<group>"; };
 		DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TWEntryListTableViewController.m; sourceTree = SOURCE_ROOT; };
+		DA15CC081C9B858800F6F7B9 /* TWNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNavController.h; sourceTree = "<group>"; };
+		DA15CC091C9B858800F6F7B9 /* TWNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNavController.m; sourceTree = "<group>"; };
 		DA18B5691C7BE82A00D7ADD8 /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA18B56B1C7BE82A00D7ADD8 /* ShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		DA18B56C1C7BE82A00D7ADD8 /* ShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
@@ -107,7 +109,6 @@
 		DA5E473A1C5AEDD400DBF990 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA71512B1C62AC1800C4C791 /* TWCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWCoreDataStack.h; path = ../TWCoreDataStack.h; sourceTree = "<group>"; };
 		DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWCoreDataStack.m; path = ../TWCoreDataStack.m; sourceTree = "<group>"; };
-		DA7D2B8D1C9790810067B45A /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		DAFD13181C7FD32B00C8B07F /* theBlocNotes.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = theBlocNotes.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,7 +124,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA7D2B8E1C9790810067B45A /* CloudKit.framework in Frameworks */,
 				DA27FD411C6D5CEA00876EB6 /* Foundation.framework in Frameworks */,
 				DA27FD3F1C6D5CDF00876EB6 /* UIKit.framework in Frameworks */,
 				DA27FD3D1C6D5CD700876EB6 /* CoreData.framework in Frameworks */,
@@ -163,7 +163,6 @@
 		DA5E47041C5AEDD400DBF990 = {
 			isa = PBXGroup;
 			children = (
-				DA7D2B8D1C9790810067B45A /* CloudKit.framework */,
 				DA27FD401C6D5CEA00876EB6 /* Foundation.framework */,
 				DA27FD3E1C6D5CDF00876EB6 /* UIKit.framework */,
 				DA27FD3C1C6D5CD700876EB6 /* CoreData.framework */,
@@ -199,6 +198,8 @@
 				DA1332D41C665556002B47BD /* TWEntryListTableViewController.m */,
 				DA1332D01C641753002B47BD /* TWNewNoteViewController.h */,
 				DA1332D11C641753002B47BD /* TWNewNoteViewController.m */,
+				DA15CC081C9B858800F6F7B9 /* TWNavController.h */,
+				DA15CC091C9B858800F6F7B9 /* TWNavController.m */,
 				DA71512B1C62AC1800C4C791 /* TWCoreDataStack.h */,
 				DA71512C1C62AC1800C4C791 /* TWCoreDataStack.m */,
 				DA1332CC1C6412B9002B47BD /* TWBlocNotes.h */,
@@ -430,6 +431,7 @@
 				DA5E47151C5AEDD400DBF990 /* AppDelegate.m in Sources */,
 				DA5E47121C5AEDD400DBF990 /* main.m in Sources */,
 				DA1332D51C665556002B47BD /* TWEntryListTableViewController.m in Sources */,
+				DA15CC0A1C9B858800F6F7B9 /* TWNavController.m in Sources */,
 				DA71512D1C62AC1800C4C791 /* TWCoreDataStack.m in Sources */,
 				DA1332D21C641753002B47BD /* TWNewNoteViewController.m in Sources */,
 				DA5E471E1C5AEDD400DBF990 /* theBlocNotes.xcdatamodeld in Sources */,

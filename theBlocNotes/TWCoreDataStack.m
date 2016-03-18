@@ -84,12 +84,12 @@
            selector:@selector(persistentStoreDidImportUbiquitousContentChanges:)
                name:NSPersistentStoreDidImportUbiquitousContentChangesNotification
              object:_persistentStoreCoordinator];
-    NSError* error;
-    [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                       configuration:nil
-                                                                                 URL:self.storeURL
-                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloud.com-winslowt1--theBlocNotes-.theBlocNotes"}
-                                                                               error:&error];
+//    NSError* error;
+//    [self.managedObjectContext.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+//                                                                       configuration:nil
+//                                                                                 URL:self.storeURL
+//                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloud.winslowt.theBlocNotes"}
+//                                                                               error:&error];
     return _managedObjectContext;
 }
 
@@ -174,11 +174,17 @@
     //where diary is going to live
     
     NSError *error = nil;
-//    NSString *failureReason = @"There was an error creating or loading the application's saved data.";
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    
+    [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                                       configuration:nil
+                                                                                 URL:storeURL
+                                                                             options:@{ NSPersistentStoreUbiquitousContentNameKey : @"iCloud.winslowt.theBlocNotes"}
+                                                                               error:&error];
+
+//    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//        abort();
+//    }
     
     return _persistentStoreCoordinator;
 }

@@ -60,13 +60,14 @@
         self.textView.text = self.entry.text;
         
         self.textView.editable = NO;
+        
         self.textView.dataDetectorTypes = UIDataDetectorTypeAll;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
         
         tapGesture.numberOfTapsRequired = 2;
         
-        [self.view addGestureRecognizer:tapGesture];
+        [self.textView addGestureRecognizer:tapGesture];
 
     }
 
